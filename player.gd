@@ -8,11 +8,10 @@ var screen_size 			# Size of the game window.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	hide()
-	pass # Replace with function body.
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var velocity = Vector2.ZERO # The player's movement vector.
+	var velocity = Vector2.ZERO
 	
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -32,7 +31,7 @@ func _process(delta: float) -> void:
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 	
-	# Flipping animations to reuse when moving in opposite direction
+	# Flip animations when moving other way
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_v = false
@@ -43,7 +42,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
-	hide() # Player disappears after being hit.
+	hide()
 	hit.emit()
 	# Must be deferred as we can't change physics properties on a physics callback.
 	$CollisionShape2D.set_deferred("disabled", true)
