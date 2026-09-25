@@ -10,7 +10,6 @@ func _ready() -> void:
 	hide()
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO # The player's movement vector.
@@ -42,7 +41,6 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 	pass
-
 
 func _on_body_entered(body: Node2D) -> void:
 	hide() # Player disappears after being hit.
